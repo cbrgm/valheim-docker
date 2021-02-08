@@ -6,11 +6,11 @@ LABEL title="Valheim - Dockerized dedicated server" \
 	twitter="@chrisbargmann"
 
 LABEL UPDATE_ON_RESTART="If set to 1, check for available updates on startup and install when found." \
-			SERVER_NAME="The server name to be displayed in the multiplayer browser menu. Example: ValheimServer" \
-			SERVER_PORT="The server port to bind on. Example: 2456" \
-			SERVER_WORLD="The server's world name. Example: Valhalla" \
-			SERVER_PASSWORD="The server's password. Example: secret" \
-			SERVER_PUBLIC="The server's public ip address. Example: 0.0.0.0"
+	SERVER_NAME="The server name to be displayed in the multiplayer browser menu. Example: ValheimServer" \
+	SERVER_PORT="The server port to bind on. Example: 2456" \
+	SERVER_WORLD="The server's world name. Example: Valhalla" \
+	SERVER_PASSWORD="The server's password. Example: secret" \
+	SERVER_PUBLIC="The server's public ip address. Example: 0.0.0.0"
 
 ENV UPDATE_ON_RESTART=1
 COPY docker-entrypoint.sh /usr/local/bin/
@@ -24,7 +24,7 @@ RUN  echo steam steam/question select "I AGREE" | debconf-set-selections \
 	&& apt-get upgrade -yq \
 	&& apt-get install -yq locales ca-certificates lib32gcc1 steamcmd \
 	&& echo 'LANG="en_US.UTF-8"' > /etc/default/locale \
-  && echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
+	&& echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
 	&& locale-gen \
 	&& apt-get clean \
 	&& ln -s /usr/games/steamcmd /usr/bin/steamcmd \
