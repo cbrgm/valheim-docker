@@ -68,11 +68,11 @@ spec:
           - name: SERVER_PASSWORD
             value: "secret"
           - name: SERVER_PUBLIC
-            value: 0.0.0.0
+            value: "0.0.0.0"
           - name: SERVER_PORT
             value: "2456"
           - name: UPDATE_ON_RESTART
-            value: 1
+            value: "1"
         volumeMounts:
           - mountPath: /data
             name: valheim-data

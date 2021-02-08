@@ -31,7 +31,7 @@ RUN  echo steam steam/question select "I AGREE" | debconf-set-selections \
 	&& steamcmd +quit \
 	&& useradd --create-home valheim --shell /bin/bash --comment valheim \
 	&& mkdir -p /home/valheim/server \
-	&& mkdir -p /home/valheim/.config/unity3d/IronGate/Valheim /data \
+	&& mkdir -p /home/valheim/.config/unity3d/IronGate /data \
 	&& ln -s /data /home/valheim/.config/unity3d/IronGate/Valheim \
 	&& chown valheim:valheim /usr/local/bin/docker-entrypoint.sh \
 	&& chown -R valheim:valheim /home/valheim
@@ -42,4 +42,10 @@ EXPOSE 2456/udp 2457/udp 2456/udp
 ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
 
 WORKDIR /home/valheim
-CMD ["./server/valheim_server.x86_64", "-name", "${SERVER_NAME}", "-world", "${SERVER_WORLD}", "-password", "${SERVER_PASSWORD}", "-public", "${SERVER_PUBLIC}", "-port", "${SERVER_PORT}"]
+CMD SteamAppId=892970 LD_LIBRARY_PATH="/home/valheim/server/linux64/" \
+	/home/valheim/server/valheim_server.x86_64 \
+	-name ${SERVER_NAME} \
+ 	-world ${SERVER_WORLD} \
+	-password ${SERVER_PASSWORD} \
+	-public ${SERVER_PUBLIC} \
+	-port ${SERVER_PORT}
