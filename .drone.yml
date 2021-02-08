@@ -1,0 +1,25 @@
+---
+kind: pipeline
+type: kubernetes
+name: build
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+  - name: container
+    image: plugins/docker
+    settings:
+      dockerfile: ./Dockerfile
+      password:
+        from_secret: quay_password
+      registry: quay.io
+      repo: quay.io/cbrgm/valheim-docker
+      username:
+        from_secret: quay_username
+    when:
+      branch:
+        - master
+      event:
+        - push

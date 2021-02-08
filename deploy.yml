@@ -1,0 +1,82 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: valheim-pv-volume
+  namespace: production
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/valheim"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: valheim-pv-claim
+  namespace: production
+  labels:
+    app: valheim-server
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 3Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: valheim-server
+  namespace: production
+  labels:
+    app: valheim-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: valheim-server
+  template:
+    metadata:
+      labels:
+        app: valheim-server
+    spec:
+      containers:
+      - name: valheim-server
+        image: quay.io/cbrgm/valheim-docker:latest
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 2456
+            protocol: UDP
+            hostPort: 2456
+          - containerPort: 2457
+            protocol: UDP
+            hostPort: 2457
+          - containerPort: 2458
+            protocol: UDP
+            hostPort: 2458
+        env:
+          - name: SERVER_NAME
+            value: "ValheimServer"
+          - name: SERVER_WORLD
+            value: "Valhalla"
+          - name: SERVER_PASSWORD
+            value: "secret"
+          - name: SERVER_PUBLIC
+            value: 0.0.0.0
+          - name: SERVER_PORT
+            value: "2456"
+          - name: UPDATE_ON_RESTART
+            value: 1
+        volumeMounts:
+          - mountPath: /data
+            name: valheim-data
+      volumes:
+        - name: valheim-data
+          persistentVolumeClaim:
+            claimName: valheim-pv-claim
