@@ -14,7 +14,6 @@ docker run -itd \
     -e SERVER_NAME="ValheimServer" \
     -e SERVER_WORLD="Valhalla" \
     -e SERVER_PASSWORD="secret" \
-    -e SERVER_PUBLIC="0.0.0.0" \
     -e SERVER_PORT="2456" \
     -e UPDATE_ON_RESTART="1" \
     -v $(pwd)/data:/data \
@@ -39,7 +38,6 @@ You may also deploy the server on a kubernetes cluster. For some inspiration ple
 * `SERVER_NAME`: The server name to be displayed in the multiplayer browser menu. (Example: ValheimServer)
 * `SERVER_WORLD`:"The server's world name. (Example: Valhalla)
 * `SERVER_PASSWORD`: The server's password. (Example: secret)
-* `SERVER_PUBLIC`: The server's public ip address. Example: (0.0.0.0)
 * `SERVER_PORT`: The server port to bind on. (Example: 2456)
 * `UPDATE_ON_RESTART`"If set to 1, check for available updates on each restart and install when found. (Default: 1)
 

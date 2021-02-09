@@ -9,8 +9,7 @@ LABEL UPDATE_ON_RESTART="If set to 1, check for available updates on startup and
 	SERVER_NAME="The server name to be displayed in the multiplayer browser menu. Example: ValheimServer" \
 	SERVER_PORT="The server port to bind on. Example: 2456" \
 	SERVER_WORLD="The server's world name. Example: Valhalla" \
-	SERVER_PASSWORD="The server's password. Example: secret" \
-	SERVER_PUBLIC="The server's public ip address. Example: 0.0.0.0"
+	SERVER_PASSWORD="The server's password. Example: secret"
 
 ENV UPDATE_ON_RESTART=1
 COPY docker-entrypoint.sh /usr/local/bin/
@@ -48,5 +47,5 @@ CMD SteamAppId=892970 LD_LIBRARY_PATH="/home/valheim/server/linux64/" \
 	-name ${SERVER_NAME} \
  	-world ${SERVER_WORLD} \
 	-password ${SERVER_PASSWORD} \
-	-public ${SERVER_PUBLIC} \
+	-public 1 \
 	-port ${SERVER_PORT}
