@@ -37,7 +37,7 @@ RUN  echo steam steam/question select "I AGREE" | debconf-set-selections \
 	&& chown valheim:valheim /data
 
 USER valheim
-EXPOSE 2456/udp 2457/udp 2456/udp
+EXPOSE 2456/udp 2457/udp 2458/udp
 
 ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
 
