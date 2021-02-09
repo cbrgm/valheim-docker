@@ -65,3 +65,6 @@ You may also deploy the server on a kubernetes cluster. For some inspiration ple
 ## Contributing & License
 
 Feel free to submit changes! See the [Contributing Guide](https://github.com/cbrgm/contributing/blob/master/CONTRIBUTING.md). This project is open-source and is developed under the terms of the [Apache 2.0 License](https://github.com/cbrgm/valheim-docker/blob/master/LICENSE).
+
+<img src="https://media.giphy.com/media/l2QZY5QBQzdNRyOuk/giphy.gif" alt="thanks"
+	title="thank you" height="100" />
