@@ -34,7 +34,8 @@ RUN  echo steam steam/question select "I AGREE" | debconf-set-selections \
 	&& mkdir -p /home/valheim/.config/unity3d/IronGate /data \
 	&& ln -s /data /home/valheim/.config/unity3d/IronGate/Valheim \
 	&& chown valheim:valheim /usr/local/bin/docker-entrypoint.sh \
-	&& chown -R valheim:valheim /home/valheim
+	&& chown -R valheim:valheim /home/valheim \
+	&& chown valheim:valheim /data
 
 USER valheim
 EXPOSE 2456/udp 2457/udp 2456/udp
