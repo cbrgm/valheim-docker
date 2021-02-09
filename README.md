@@ -3,8 +3,8 @@
 Unofficial Valheim containerized, dedicated gameserver.  
 https://www.valheimgame.com/
 
-[![Build Status](https://drone.cbrgm.net/api/badges/cbrgm/valheim-docker/status.svg)](https://drone.cbrgm.net/cbrgm/valheim-docker)
-[![Docker Repository on Quay](https://quay.io/repository/cbrgm/valheim-docker/status "Docker Repository on Quay")](https://quay.io/repository/cbrgm/valheim-docker)
+[![Build Status](https://drone.cbrgm.net/api/badges/cbrgm/valheim-docker/status.svg?ref=refs/heads/master)](https://drone.cbrgm.net/cbrgm/valheim-docker)
+[![Docker Repository on Quay](https://img.shields.io/badge/quay.io-cbrgm%2Fvalheim--docker-blue)](https://quay.io/repository/cbrgm/valheim-docker)
 
 ## Run Container
 
