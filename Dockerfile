@@ -11,7 +11,12 @@ LABEL UPDATE_ON_RESTART="If set to 1, check for available updates on startup and
 	SERVER_WORLD="The server's world name. Example: Valhalla" \
 	SERVER_PASSWORD="The server's password. Example: secret"
 
-ENV UPDATE_ON_RESTART=1
+ENV UPDATE_ON_RESTART=1 \
+	SERVER_NAME="ValheimServer" \
+	SERVER_PORT="2456" \
+	SERVER_WORLD="Valhalla" \
+	SERVER_PASSWORD="secret"
+
 COPY docker-entrypoint.sh /usr/local/bin/
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
@@ -29,8 +34,7 @@ RUN  echo steam steam/question select "I AGREE" | debconf-set-selections \
 	&& ln -s /usr/games/steamcmd /usr/bin/steamcmd \
 	&& steamcmd +quit \
 	&& useradd --create-home valheim --shell /bin/bash --comment valheim \
-	&& mkdir -p /home/valheim/server \
-	&& mkdir -p /home/valheim/.config/unity3d/IronGate /data \
+	&& mkdir -p /home/valheim/server /home/valheim/.config/unity3d/IronGate /data \
 	&& ln -s /data /home/valheim/.config/unity3d/IronGate/Valheim \
 	&& chown valheim:valheim /usr/local/bin/docker-entrypoint.sh \
 	&& chown -R valheim:valheim /home/valheim \
