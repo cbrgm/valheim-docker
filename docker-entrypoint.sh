@@ -23,7 +23,7 @@ if ! check_files_exist; then
   update_files
   echo "Done!"
 else
-  if [ ${UPDATE_ON_RESTART} -neq 0 ]; then
+  if [ ${UPDATE_ON_RESTART} -ne 0 ]; then
     echo "Checking for latest Valheim server updates, this may take a moment..."
     update_files
     echo "Done!"
